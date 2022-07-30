@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { logIn, logOut } from "./services/auth-method";
 
 function App() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h1>Authentication</h1>
+        <hr />
+        <div>09212594679 - 123456789</div>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <br />
+        <input
+          type="text"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br />
+        <button onClick={() => logIn({ username, password })}>log in</button>
+        <button onClick={logOut}>log out</button>
+      </div>
     </div>
   );
 }
