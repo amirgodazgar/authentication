@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
   headers: { "X-Custom-Header": "foobar" },
 });
 
-axios.defaults.baseURL = "https://dalahou.rasm.io/api/v1";
+axios.defaults.baseURL = "https://url/api/v1";
 
 // Request Config ---------------------------------
 
