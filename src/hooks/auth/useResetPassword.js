@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import AuthContext from "../../context/authProvider";
+import { clearCookies } from "../../helper/auth";
 import { httpDefault } from "../../services/http";
 
 const useResetPassword = () => {
   const [information, setInformation] = useState({});
+  const { setAuth } = useContext(AuthContext);
   const { otpCode, userName, newPassword, newPasswordConfirmation } =
     information;
 
@@ -18,7 +21,18 @@ const useResetPassword = () => {
       })
       .then((res) => {
         if (res.status === 200) {
-          // pushing user to the Login page for sign in
+          // Redirect user to the sign-in page
+
+          setAuth((prev) => ({
+            ...prev,
+            isLogin: false,
+            accessToken: null,
+            tokenExpiration: null,
+            refreshToken: null,
+            refreshTokenExpiration: null,
+            error: null,
+          }));
+          clearCookies();
           console.log("ResetPassword", res);
         }
       })
