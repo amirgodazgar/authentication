@@ -1,19 +1,20 @@
 import Cookies from "js-cookie";
 
 export const clearCookies = () => {
-  Cookies.remove("token");
-  Cookies.remove("tokenExp");
+  Cookies.remove("accessToken");
+  Cookies.remove("tokenExpiration");
   Cookies.remove("refreshToken");
-  Cookies.remove("refreshTokenExp");
-  Cookies.remove("isLogin");
+  Cookies.remove("refreshTokenExpiration");
+  Cookies.set("isLogin", false);
 };
 
 export const setTokenCookies = (tokenInfo) => {
-  const { token, tokenExp, refreshToken, refreshTokenExp } = tokenInfo;
+  const { accessToken, tokenExpiration, refreshToken, refreshTokenExpiration } =
+    tokenInfo;
 
-  Cookies.set("token", token);
-  Cookies.set("tokenExp", tokenExp);
+  Cookies.set("accessToken", accessToken);
+  Cookies.set("tokenExpiration", tokenExpiration);
   Cookies.set("refreshToken", refreshToken);
-  Cookies.set("refreshTokenExp", refreshTokenExp);
+  Cookies.set("refreshTokenExpiration", refreshTokenExpiration);
   Cookies.set("isLogin", true);
 };

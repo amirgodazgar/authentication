@@ -3,36 +3,36 @@ import { clearCookies, setTokenCookies } from "../helper/auth";
 import http from "./http";
 
 // ------------------ SIGN IN -------------------------
-export const logIn = async (userInfo) => {
-  const { username, password } = userInfo;
-  // clearing token and login from cookie
-  clearCookies();
+// export const logIn = async (userInfo) => {
+//   const { username, password } = userInfo;
+//   // clearing token and login from cookie
+//   clearCookies();
 
-  // sign in and set token information and login in cookie
-  await http
-    .post("/Account/SignIn", {
-      userName: username,
-      password: password,
-    })
-    .then((response) => {
-      console.log(response);
+//   // sign in and set token information and login in cookie
+//   await http
+//     .post("/Account/SignIn", {
+//       userName: username,
+//       password: password,
+//     })
+//     .then((response) => {
+//       console.log(response);
 
-      if (response.status === 200) {
-        const token = response.data.data;
-        const tokenInfo = {
-          token: token.accessToken,
-          tokenExp: token.accessTokenExpirationTime,
-          refreshToken: token.refreshToken,
-          refreshTokenExp: token.refreshTokenExpirationTime,
-        };
-        setTokenCookies(tokenInfo);
-      }
-    })
-    .catch((error) => {
-      // show error message
-      console.log("error", error.response);
-    });
-};
+//       if (response.status === 200) {
+//         const token = response.data.data;
+//         const tokenInfo = {
+//           token: token.accessToken,
+//           tokenExp: token.accessTokenExpirationTime,
+//           refreshToken: token.refreshToken,
+//           refreshTokenExp: token.refreshTokenExpirationTime,
+//         };
+//         setTokenCookies(tokenInfo);
+//       }
+//     })
+//     .catch((error) => {
+//       // show error message
+//       console.log("error", error.response);
+//     });
+// };
 
 // ------------------ SIGN OUT -------------------------
 export const logOut = () => {

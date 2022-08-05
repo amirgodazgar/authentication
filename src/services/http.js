@@ -6,13 +6,11 @@ import { setTokenCookies } from "../helper/auth";
 
 // import Router from "next/router";
 // import { toast } from "react-toastify";
+const baseUrl = "https://dalahou.rasm.io/api/v1";
 
-const axiosInstance = axios.create({
-  baseURL: "",
-  headers: { "X-Custom-Header": "foobar" },
+export const httpDefault = axios.create({
+  baseURL: baseUrl,
 });
-
-axios.defaults.baseURL = "https://url/api/v1";
 
 // Request Config ---------------------------------
 
@@ -38,7 +36,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (res) => {
-   console.log('resssss' , res);
+    console.log("resssss", res);
     const expDate = new Date(Cookies.get("tokenExp"));
     const currentDate = new Date();
     const oneMinute = 30000;
