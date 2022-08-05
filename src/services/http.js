@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import { logOut } from "./auth-method";
+// import { logOut } from "./auth-method";
 import { setTokenCookies } from "../helper/auth";
 
 // import Router from "next/router";
@@ -99,7 +99,7 @@ axios.interceptors.response.use(
       error.response.status === 401 &&
       originalRequest.url === "/Account/RefreshToken"
     ) {
-      logOut();
+      // logOut();
       return Promise.reject(error);
     }
 

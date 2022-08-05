@@ -1,15 +1,15 @@
 import { useContext, useState } from "react";
 import "./App.css";
 import AuthContext from "./context/authProvider";
-import useLogin from "./hooks/useLogin";
-import useLogout from "./hooks/useLogout";
+import useSignIn from "./hooks/auth/useSignIn";
+import useSignOut from "./hooks/auth/useSignOut";
 
 function App() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { auth } = useContext(AuthContext);
-  const { setInformation } = useLogin();
-  const { setLogout } = useLogout();
+  const { setInformation } = useSignIn();
+  const { setLogout } = useSignOut();
 
   const submitHandler = (e) => {
     e.preventDefault();

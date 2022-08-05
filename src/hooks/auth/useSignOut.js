@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import AuthContext from "../context/authProvider";
-import { clearCookies } from "../helper/auth";
+import AuthContext from "../../context/authProvider";
+import { clearCookies } from "../../helper/auth";
 
-const useLogout = () => {
+const useSignOut = () => {
   const { setAuth } = useContext(AuthContext);
   const [logout, setLogout] = useState(false);
 
@@ -31,4 +31,4 @@ const useLogout = () => {
   return { setLogout };
 };
 
-export default useLogout;
+export default useSignOut;

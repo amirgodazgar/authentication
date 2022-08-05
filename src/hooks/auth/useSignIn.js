@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import AuthContext from "../context/authProvider";
-import { clearCookies, setTokenCookies } from "../helper/auth";
-import { httpDefault } from "../services/http";
+import AuthContext from "../../context/authProvider";
+import { clearCookies, setTokenCookies } from "../../helper/auth";
+import { httpDefault } from "../../services/http";
 
-const useLogin = () => {
+const useSignIn = () => {
   const [information, setInformation] = useState({});
   const { setAuth } = useContext(AuthContext);
   const { userName, password } = information;
@@ -49,4 +49,4 @@ const useLogin = () => {
   return { setInformation };
 };
 
-export default useLogin;
+export default useSignIn;
