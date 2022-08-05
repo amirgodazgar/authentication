@@ -2,12 +2,14 @@ import { useContext, useState } from "react";
 import "./App.css";
 import AuthContext from "./context/authProvider";
 import useLogin from "./hooks/useLogin";
+import useLogout from "./hooks/useLogout";
 
 function App() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { auth } = useContext(AuthContext);
   const { setInformation } = useLogin();
+  const { setLogout } = useLogout();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -19,7 +21,10 @@ function App() {
   return (
     <div className="App">
       {auth.isLogin ? (
-        <h2>You are Log in successfully</h2>
+        <>
+          <h2>You are Log in successfully</h2>
+          <button onClick={() => setLogout(true)}>log out</button>
+        </>
       ) : (
         <form onSubmit={(e) => submitHandler(e)}>
           <h1>Authentication</h1>

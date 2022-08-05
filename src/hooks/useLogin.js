@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/authProvider";
-import { setTokenCookies } from "../helper/auth";
+import { clearCookies, setTokenCookies } from "../helper/auth";
 import { httpDefault } from "../services/http";
 
 const useLogin = () => {
@@ -42,6 +42,7 @@ const useLogin = () => {
           refreshTokenExpiration: null,
           error: error?.response,
         }));
+        clearCookies();
       });
   }, [information]);
 
