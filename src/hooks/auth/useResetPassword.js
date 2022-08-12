@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../context/authProvider";
+import { useEffect, useState } from "react";
 import { clearCookies } from "../../helper/auth";
 import { httpDefault } from "../../services/http";
+import useAuth from "./useAuth";
 
 const useResetPassword = () => {
   const [information, setInformation] = useState({});
-  const { setAuth } = useContext(AuthContext);
+
+  const { setAuth } = useAuth();
   const { otpCode, userName, newPassword, newPasswordConfirmation } =
     information;
 

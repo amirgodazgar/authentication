@@ -45,7 +45,7 @@ function App() {
           />
           <br />
           <button type="submit">log in</button>
-          {/* <button onClick={logOut}>log out</button> */}
+ 
         </form>
       )}
     </div>

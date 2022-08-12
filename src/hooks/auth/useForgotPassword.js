@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../context/authProvider";
+import { useEffect, useState } from "react";
 import { clearCookies } from "../../helper/auth";
 import { httpDefault } from "../../services/http";
+import useAuth from "./useAuth";
 
 const useForgotPassword = () => {
   const [information, setInformation] = useState({});
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
   const { userName } = information;
-  
+
   useEffect(() => {
     httpDefault
       .post("/Account/ForgetPassword", {

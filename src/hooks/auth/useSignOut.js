@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../context/authProvider";
+import { useEffect, useState } from "react";
 import { clearCookies } from "../../helper/auth";
+import useAuth from "./useAuth";
 
 const useSignOut = () => {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
   const [logout, setLogout] = useState(false);
 
   useEffect(() => {
