@@ -1,13 +1,17 @@
-import { useContext, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
-import AuthContext from "./context/authProvider";
+import useAuth from "./hooks/auth/useAuth";
+import useHttpPrivate from "./hooks/auth/useHttpPrivate";
+import useRefreshToken from "./hooks/auth/useRefreshToken";
 import useSignIn from "./hooks/auth/useSignIn";
 import useSignOut from "./hooks/auth/useSignOut";
 
 function App() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const { auth } = useContext(AuthContext);
+  const [get, setGet] = useState(false);
+  const { auth } = useAuth();
   const { setInformation } = useSignIn();
   const { setLogout } = useSignOut();
 
@@ -16,7 +20,14 @@ function App() {
     setInformation({ userName, password });
   };
 
-  console.log(auth);
+  const refresh = useRefreshToken();
+  const httpPrivate = useHttpPrivate();
+
+  useEffect(() => {
+    httpPrivate.get("/Account/GetUserData").then((res) => {
+      console.log(res);
+    });
+  }, [get]);
 
   return (
     <div className="App">
@@ -24,6 +35,8 @@ function App() {
         <>
           <h2>You are Log in successfully</h2>
           <button onClick={() => setLogout(true)}>log out</button>
+          <button onClick={() => refresh()}>refresh</button>
+          <button onClick={() => setGet((prev) => !prev)}>get</button>
         </>
       ) : (
         <form onSubmit={(e) => submitHandler(e)}>
@@ -45,7 +58,6 @@ function App() {
           />
           <br />
           <button type="submit">log in</button>
- 
         </form>
       )}
     </div>
