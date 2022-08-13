@@ -28,7 +28,7 @@ const useHttpPrivate = () => {
             error?.response?.status === 401) &&
           !prevRequest?.sent;
 
-        if (error?.response?.status === 401 && !prevRequest?.sent) {
+        if (authorizationError) {
           prevRequest.sent = true;
           await refresh();
           prevRequest.headers["Authorization"] = `Bearer ${auth.accessToken}`;
