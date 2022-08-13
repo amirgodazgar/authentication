@@ -13,11 +13,3 @@ export const httpPrivate = axios.create({
   // withCredentials: true,
 });
 
-const http = {
-  get: axios.get,
-  post: axios.post,
-  put: axios.put,
-  delete: axios.delete,
-};
-
-export default http;
