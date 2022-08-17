@@ -4,10 +4,8 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin: auto auto; */
   width: 60%;
   height: 40rem;
-  /* border: 1px solid; */
 
   .paper {
     width: 100%;

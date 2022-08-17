@@ -12,7 +12,6 @@ const Layout = () => {
           <Box className="field">
             <SignIn />
           </Box>
-
           <Box className="image">
             <Image />
           </Box>
