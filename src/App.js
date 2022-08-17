@@ -6,6 +6,7 @@ import useHttpPrivate from "./hooks/auth/useHttpPrivate";
 import useRefreshToken from "./hooks/auth/useRefreshToken";
 import useSignIn from "./hooks/auth/useSignIn";
 import useSignOut from "./hooks/auth/useSignOut";
+import Layout from "./view/layout/layout";
 
 function App() {
   const [userName, setUserName] = useState("");
@@ -31,7 +32,7 @@ function App() {
 
   return (
     <div className="App">
-      {auth.isLogin ? (
+      {/* {auth.isLogin ? (
         <>
           <h2>You are Log in successfully</h2>
           <button onClick={() => setLogout(true)}>log out</button>
@@ -59,7 +60,8 @@ function App() {
           <br />
           <button type="submit">log in</button>
         </form>
-      )}
+      )} */}
+      <Layout />
     </div>
   );
 }
