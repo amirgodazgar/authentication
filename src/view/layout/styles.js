@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 60%;
   height: 40rem;
+  border-radius: 4px;
 
   .paper {
     width: 100%;
@@ -41,6 +42,7 @@ export const ImageWrapper = styled.div`
     width: 100%;
     background-origin: border-box;
     background-repeat: no-repeat;
+    border-radius: 0 4px 4px  0;
   }
   .cover {
     height: 100%;

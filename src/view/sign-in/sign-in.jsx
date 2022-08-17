@@ -25,18 +25,20 @@ const SignIn = () => {
   return (
     <Fade in={true} timeout={2000}>
       <Wrapper>
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Sign in with your email
-          </Typography>
-        </Box>
-        <Box>
-          <Typography className="subtitle" variant="overline" gutterBottom>
-            Don't have an account?
-          </Typography>
-          <Typography className="link" variant="overline" gutterBottom>
-            <Link>Sign up</Link>
-          </Typography>
+        <Box className="title-box">
+          <Box>
+            <Typography variant="h4" gutterBottom>
+              Sign in with your email
+            </Typography>
+          </Box>
+          <Box>
+            <Typography className="subtitle" variant="overline" gutterBottom>
+              Don't have an account?
+            </Typography>
+            <Typography className="link" variant="overline" gutterBottom>
+              <Link>Sign up</Link>
+            </Typography>
+          </Box>
         </Box>
 
         <FormGroup className="form">
@@ -80,7 +82,9 @@ const SignIn = () => {
               <Link>Forgot password</Link>
             </Typography>
           </Box>
-          <Button variant="contained">Sign In</Button>
+          <Button variant="contained" className="btn">
+            Sign In
+          </Button>
         </FormGroup>
       </Wrapper>
     </Fade>

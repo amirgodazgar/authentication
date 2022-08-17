@@ -3,14 +3,14 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   /* background-color: #dddd; */
   width: 70%;
-  height: 40%;
+  height: 70%;
   padding: 2rem;
 
   .form {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    height: 100%;
+    justify-content: space-between;
+    height: 65%;
     width: 100%;
   }
 
@@ -20,10 +20,24 @@ export const Wrapper = styled.div`
     align-items: center;
     width: 100%;
   }
+
+  .title-box {
+    margin-bottom: 2rem;
+  }
+
   .subtitle {
     margin-right: 0.7rem;
   }
   .link {
     cursor: pointer;
+  }
+
+  .btn {
+    background-color: #1e718b;
+    :hover {
+      background-color: #5c97ad;
+    }
+
+
   }
 `;
