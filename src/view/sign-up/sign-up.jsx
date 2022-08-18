@@ -143,7 +143,7 @@ const SignUp = () => {
             variant="contained"
             className="btn"
           >
-            Create an account
+            Create an Account
           </Button>
         </FormGroup>
       </Wrapper>

@@ -7,6 +7,7 @@ import SignUp from "../sign-up/sign-up";
 import ForgotPassword from "../forgot-password/forgot-password";
 import VerificationCode from "../verification/verification-code";
 import ResetPassword from "../reset-password/reset-password";
+import Welcome from "../welcome-page/welcome";
 
 const Layout = () => {
   return (
@@ -14,13 +15,12 @@ const Layout = () => {
       <Wrapper>
         <Paper className="paper" elevation={5}>
           <Box className="field">
-            
-            {/* <SignIn /> */}
+            <SignIn />
             {/* <SignUp /> */}
             {/* <ForgotPassword /> */}
             {/* <VerificationCode /> */}
-            <ResetPassword />
-
+            {/* <ResetPassword /> */}
+            {/* <Welcome /> */}
           </Box>
           <Box className="image">
             <Image />

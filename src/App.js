@@ -21,6 +21,8 @@ function App() {
     });
   }, [get]);
 
+  console.log("App", auth);
+
   return (
     <div className="App">
       {/* {auth.isLogin ? (
