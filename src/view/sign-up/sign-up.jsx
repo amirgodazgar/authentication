@@ -15,25 +15,23 @@ import {
   Button,
   Fade,
 } from "@mui/material";
-import React from "react";
-import { useState } from "react";
-import useAuth from "../../hooks/auth/useAuth";
-import useSignIn from "../../hooks/auth/useSignIn";
-import { Wrapper } from "./sign-in.styles";
+import React, { useState } from "react";
+import useSignUp from "../../hooks/auth/useSignUp";
+import { Wrapper } from "./sign-up.styles";
 
-const SignIn = () => {
+const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [shouldRemember, setShouldRemember] = useState(false);
+  const [resetPassword, setResetPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { setInformation } = useSignIn();
-  const { auth } = useAuth();
+  const [showResetPassword, setShowResetPassword] = useState(false);
+  const { setInformation } = useSignUp();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setInformation({ userName, password }, shouldRemember);
+    setInformation({ userName, password });
+    console.log(userName, password, resetPassword);
   };
-  console.log(auth);
 
   return (
     <Fade in={true} timeout={2000}>
@@ -46,10 +44,10 @@ const SignIn = () => {
           </Box>
           <Box>
             <Typography className="subtitle" variant="overline" gutterBottom>
-              Don't have an account?
+              Do you have an account?
             </Typography>
             <Typography className="link" variant="overline" gutterBottom>
-              <Link>Sign up</Link>
+              <Link>Sign in</Link>
             </Typography>
           </Box>
         </Box>
@@ -79,7 +77,6 @@ const SignIn = () => {
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
-                    aria-label="toggle password visibility"
                     onClick={() => setShowPassword((prev) => !prev)}
                     edge="end"
                   >
@@ -89,26 +86,66 @@ const SignIn = () => {
               }
             />
           </FormControl>
-          <Box className="forgot-password-box">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={shouldRemember}
-                  onChange={(e) => setShouldRemember(e.target.checked)}
-                />
+
+          <FormControl>
+            <InputLabel htmlFor="password">Repeat password</InputLabel>
+            <OutlinedInput
+              id="password"
+              label="Repeat password"
+              variant="outlined"
+              fullWidth
+              value={resetPassword}
+              onChange={(e) => setResetPassword(e.target.value)}
+              type={showResetPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowResetPassword((prev) => !prev)}
+                    edge="end"
+                  >
+                    {showResetPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
               }
-              label="Remember me"
             />
-            <Typography className="link" variant="overline" gutterBottom>
-              <Link>Forgot password</Link>
-            </Typography>
+          </FormControl>
+
+          <Box className="agreement-box">
+            <FormControlLabel
+              control={<Checkbox defaultChecked />}
+              //   label="Remember me"
+            />
+            <Box className="agreement-text-box">
+              <Typography variant="body1" mr={1}>
+                I agree to
+              </Typography>
+              <Typography
+                className="link"
+                color={"primary"}
+                variant="subtitle1"
+                mr={1}
+              >
+                Terms Of Service
+              </Typography>
+              <Typography variant="body1" mr={1}>
+                and
+              </Typography>
+              <Typography
+                className="link"
+                color={"primary"}
+                variant="subtitle1"
+              >
+                Privacy Policy
+              </Typography>
+            </Box>
           </Box>
+
           <Button
             onClick={(e) => submitHandler(e)}
             variant="contained"
             className="btn"
           >
-            Sign In
+            Create an account
           </Button>
         </FormGroup>
       </Wrapper>
@@ -116,4 +153,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

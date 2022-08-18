@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  /* background-color: #dddd; */
   width: 70%;
   height: 70%;
   padding: 2rem;
@@ -10,15 +9,22 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 65%;
+    height: 70%;
     width: 100%;
   }
 
-  .forgot-password-box {
+  .agreement-box {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
+  }
+
+  .agreement-text-box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
   }
 
   .title-box {
@@ -28,16 +34,8 @@ export const Wrapper = styled.div`
   .subtitle {
     margin-right: 0.7rem;
   }
+
   .link {
     cursor: pointer;
-  }
-
-  .btn {
-    background-color: #1e718b;
-    :hover {
-      background-color: #5c97ad;
-    }
-
-
   }
 `;

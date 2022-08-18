@@ -8,6 +8,13 @@ export const clearCookies = () => {
   Cookies.set("isLogin", false);
 };
 
+export const clearTokenInformation = () => {
+  Cookies.remove("accessToken");
+  Cookies.remove("tokenExpiration");
+  Cookies.remove("refreshToken");
+  Cookies.remove("refreshTokenExpiration");
+};
+
 export const setTokenCookies = (tokenInfo) => {
   const { accessToken, tokenExpiration, refreshToken, refreshTokenExpiration } =
     tokenInfo;

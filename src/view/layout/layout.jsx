@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Fade, Paper } from "@mui/material";
-import { Wrapper } from "./styles";
+import { Wrapper } from "./layout.styles";
 import SignIn from "../sign-in/sign-in";
 import Image from "./image";
+import SignUp from "../sign-up/sign-up";
 
 const Layout = () => {
   return (
@@ -10,7 +11,8 @@ const Layout = () => {
       <Wrapper>
         <Paper className="paper" elevation={5}>
           <Box className="field">
-            <SignIn />
+            {/* <SignIn /> */}
+            <SignUp />
           </Box>
           <Box className="image">
             <Image />

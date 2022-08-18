@@ -1,6 +1,6 @@
 import { Box, Fade } from "@mui/material";
 import React from "react";
-import { ImageWrapper } from "./styles";
+import { ImageWrapper } from "./layout.styles";
 import bg from "../../assets/bg.jpg";
 
 const Image = () => {

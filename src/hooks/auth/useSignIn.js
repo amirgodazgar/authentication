@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
-import { clearCookies, setTokenCookies } from "../../helper/auth";
+import {
+  clearCookies,
+  clearTokenInformation,
+  setTokenCookies,
+} from "../../helper/auth";
 import { httpDefault } from "../../services/http";
 import useAuth from "./useAuth";
 
 const useSignIn = () => {
-  const [information, setInformation] = useState({});
+  const [values, setValues] = useState({});
+  const [shouldPersist, setShouldPersist] = useState(false);
   const { setAuth } = useAuth();
-  const { userName, password } = information;
+  const { userName, password } = values;
+
+  const setInformation = (userInfo, isPersist) => {
+    setShouldPersist(isPersist);
+    setValues(userInfo);
+  };
 
   useEffect(() => {
     httpDefault
@@ -29,7 +39,9 @@ const useSignIn = () => {
             error: null,
             ...tokenInfo,
           }));
-          setTokenCookies(tokenInfo);
+
+          if (shouldPersist) setTokenCookies(tokenInfo);
+          else clearTokenInformation();
         }
       })
       .catch((error) => {
@@ -44,7 +56,7 @@ const useSignIn = () => {
         }));
         clearCookies();
       });
-  }, [information]);
+  }, [values]);
 
   return { setInformation };
 };

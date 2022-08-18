@@ -9,18 +9,9 @@ import useSignOut from "./hooks/auth/useSignOut";
 import Layout from "./view/layout/layout";
 
 function App() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
   const [get, setGet] = useState(false);
   const { auth } = useAuth();
-  const { setInformation } = useSignIn();
   const { setLogout } = useSignOut();
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setInformation({ userName, password });
-  };
-
   const refresh = useRefreshToken();
   const httpPrivate = useHttpPrivate();
 
