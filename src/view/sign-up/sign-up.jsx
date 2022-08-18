@@ -22,15 +22,16 @@ import { Wrapper } from "./sign-up.styles";
 const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [resetPassword, setResetPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showResetPassword, setShowResetPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const { setInformation } = useSignUp();
 
   const submitHandler = (e) => {
     e.preventDefault();
     setInformation({ userName, password });
-    console.log(userName, password, resetPassword);
+    console.log(userName, password, confirmPassword);
   };
 
   return (
@@ -39,12 +40,12 @@ const SignUp = () => {
         <Box className="title-box">
           <Box>
             <Typography variant="h4" gutterBottom>
-              Sign in with your email
+              Sign up with your email
             </Typography>
           </Box>
           <Box>
             <Typography className="subtitle" variant="overline" gutterBottom>
-              Do you have an account?
+              Already have an account?
             </Typography>
             <Typography className="link" variant="overline" gutterBottom>
               <Link>Sign in</Link>
@@ -88,22 +89,22 @@ const SignUp = () => {
           </FormControl>
 
           <FormControl>
-            <InputLabel htmlFor="password">Repeat password</InputLabel>
+            <InputLabel htmlFor="password">Confirm password</InputLabel>
             <OutlinedInput
               id="password"
-              label="Repeat password"
+              label="Confirm password"
               variant="outlined"
               fullWidth
-              value={resetPassword}
-              onChange={(e) => setResetPassword(e.target.value)}
-              type={showResetPassword ? "text" : "password"}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              type={showConfirmPassword ? "text" : "password"}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
-                    onClick={() => setShowResetPassword((prev) => !prev)}
+                    onClick={() => setShowConfirmPassword((prev) => !prev)}
                     edge="end"
                   >
-                    {showResetPassword ? <VisibilityOff /> : <Visibility />}
+                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               }
@@ -111,10 +112,7 @@ const SignUp = () => {
           </FormControl>
 
           <Box className="agreement-box">
-            <FormControlLabel
-              control={<Checkbox defaultChecked />}
-              //   label="Remember me"
-            />
+            <FormControlLabel control={<Checkbox defaultChecked />} />
             <Box className="agreement-text-box">
               <Typography variant="body1" mr={1}>
                 I agree to

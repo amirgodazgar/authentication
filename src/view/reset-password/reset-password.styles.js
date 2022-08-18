@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 75%;
+    height: 50%;
     width: 100%;
   }
 

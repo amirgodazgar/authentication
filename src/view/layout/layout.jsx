@@ -1,9 +1,12 @@
 import React from "react";
 import { Box, Fade, Paper } from "@mui/material";
 import { Wrapper } from "./layout.styles";
-import SignIn from "../sign-in/sign-in";
 import Image from "./image";
+import SignIn from "../sign-in/sign-in";
 import SignUp from "../sign-up/sign-up";
+import ForgotPassword from "../forgot-password/forgot-password";
+import VerificationCode from "../verification/verification-code";
+import ResetPassword from "../reset-password/reset-password";
 
 const Layout = () => {
   return (
@@ -11,8 +14,13 @@ const Layout = () => {
       <Wrapper>
         <Paper className="paper" elevation={5}>
           <Box className="field">
+            
             {/* <SignIn /> */}
-            <SignUp />
+            {/* <SignUp /> */}
+            {/* <ForgotPassword /> */}
+            {/* <VerificationCode /> */}
+            <ResetPassword />
+
           </Box>
           <Box className="image">
             <Image />

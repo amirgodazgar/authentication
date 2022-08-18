@@ -9,22 +9,8 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 75%;
+    height: 40%;
     width: 100%;
-  }
-
-  .agreement-box {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-  }
-
-  .agreement-text-box {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 90%;
   }
 
   .title-box {
