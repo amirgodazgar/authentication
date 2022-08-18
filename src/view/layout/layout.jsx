@@ -8,14 +8,19 @@ import ForgotPassword from "../forgot-password/forgot-password";
 import VerificationCode from "../verification/verification-code";
 import ResetPassword from "../reset-password/reset-password";
 import Welcome from "../welcome-page/welcome";
+import useAuth from "../../hooks/auth/useAuth";
 
 const Layout = () => {
+  const { auth } = useAuth();
+
   return (
     <Fade in={true} timeout={1000}>
       <Wrapper>
         <Paper className="paper" elevation={5}>
           <Box className="field">
-            <SignIn />
+            {auth.isLogin ? <Welcome /> : <SignIn />}
+
+            {/* <SignIn /> */}
             {/* <SignUp /> */}
             {/* <ForgotPassword /> */}
             {/* <VerificationCode /> */}
