@@ -18,7 +18,7 @@ const Layout = () => {
       <Wrapper>
         <Paper className="paper" elevation={5}>
           <Box className="field">
-            {/* {auth.isLogin ? <Welcome /> : <SignIn />} */}
+            {auth.isLogin ? <Welcome /> : <SignIn />}
 
             {/* <SignIn /> */}
             {/* <SignUp /> */}
