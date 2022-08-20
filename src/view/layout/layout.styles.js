@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  width: 80%;
   height: 40rem;
   border-radius: 4px;
 
@@ -33,7 +33,7 @@ export const ImageWrapper = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
-  
+
   .image {
     height: 100%;
     width: 100%;
@@ -43,7 +43,7 @@ export const ImageWrapper = styled.div`
     width: 100%;
     background-origin: border-box;
     background-repeat: no-repeat;
-    border-radius: 0 4px 4px  0;
+    border-radius: 0 4px 4px 0;
   }
   .cover {
     height: 100%;

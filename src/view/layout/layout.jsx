@@ -2,30 +2,15 @@ import React from "react";
 import { Box, Fade, Paper } from "@mui/material";
 import { Wrapper } from "./layout.styles";
 import Image from "./image";
-import SignIn from "../sign-in/sign-in";
-import SignUp from "../sign-up/sign-up";
-import ForgotPassword from "../forgot-password/forgot-password";
-import VerificationCode from "../verification/verification-code";
-import ResetPassword from "../reset-password/reset-password";
-import Welcome from "../welcome-page/welcome";
-import useAuth from "../../hooks/auth/useAuth";
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
-  const { auth } = useAuth();
-
   return (
     <Fade in={true} timeout={1000}>
       <Wrapper>
         <Paper className="paper" elevation={5}>
           <Box className="field">
-            {auth.isLogin ? <Welcome /> : <SignIn />}
-
-            {/* <SignIn /> */}
-            {/* <SignUp /> */}
-            {/* <ForgotPassword /> */}
-            {/* <VerificationCode /> */}
-            {/* <ResetPassword /> */}
-            {/* <Welcome /> */}
+            <Outlet />
           </Box>
           <Box className="image">
             <Image />

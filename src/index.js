@@ -6,12 +6,17 @@ import App from "./App";
 import { AuthProvider } from "./context/authProvider";
 import { theme } from "./theme/theme";
 import { ThemeProvider } from "@mui/material";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AuthProvider>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </AuthProvider>
+  <BrowserRouter>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </ThemeProvider>
+    </AuthProvider>
+  </BrowserRouter>
 );

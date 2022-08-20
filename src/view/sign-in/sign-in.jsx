@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/auth/useAuth";
 import useSignIn from "../../hooks/auth/useSignIn";
 import { Wrapper } from "./sign-in.styles";
@@ -28,6 +29,7 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { setInformation } = useSignIn();
   const { auth } = useAuth();
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -49,7 +51,7 @@ const SignIn = () => {
               Don't have an account?
             </Typography>
             <Typography className="link" variant="overline" gutterBottom>
-              <Link>Sign up</Link>
+              <Link onClick={() => navigate("/sign-up")}>Sign up</Link>
             </Typography>
           </Box>
         </Box>
@@ -100,7 +102,9 @@ const SignIn = () => {
               label="Remember me"
             />
             <Typography className="link" variant="overline" gutterBottom>
-              <Link>Forgot password</Link>
+              <Link onClick={() => navigate("/forgot-password")}>
+                Forgot password
+              </Link>
             </Typography>
           </Box>
           <Button
