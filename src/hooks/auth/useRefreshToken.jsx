@@ -27,7 +27,6 @@ const useRefreshToken = () => {
     }));
 
     setTokenCookies(tokenInfo);
-    return response.data.refreshToken;
   };
 
   return refresh;

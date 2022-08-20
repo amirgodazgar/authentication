@@ -8,10 +8,27 @@ import {
   Fade,
 } from "@mui/material";
 import React, { useState } from "react";
+import useForgotPassword from "../../hooks/auth/useForgotPassword";
 import { Wrapper } from "./forgot-password.styles";
 
 const ForgotPassword = () => {
   const [userName, setUserName] = useState("");
+  const [isEmpty, setIsEmpty] = useState(false);
+  const { setInformation } = useForgotPassword();
+
+  const checkEmpty = (...arg) => {
+    arg.map((i) => {
+      if (i === "") setIsEmpty(true);
+      else setIsEmpty(false);
+    });
+  };
+
+  const submitHandler = () => {
+    checkEmpty(userName);
+
+    if (!isEmpty) setInformation({ userName });
+    else return;
+  };
 
   return (
     <Fade in={true} timeout={2000}>
@@ -32,6 +49,7 @@ const ForgotPassword = () => {
         <FormGroup className="form">
           <FormControl>
             <TextField
+              error={isEmpty}
               id="username"
               label="Email address"
               variant="outlined"
@@ -42,7 +60,7 @@ const ForgotPassword = () => {
           </FormControl>
 
           <Button
-            // onClick={(e) => submitHandler(e)}
+            onClick={(e) => submitHandler(e)}
             variant="contained"
             className="btn"
           >

@@ -2,10 +2,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { setTokenCookies } from "../helper/auth";
 
-const BASE_URL = "https://dalahou.rasm.io/api/v1";
+const BASE_URL = "https://url/api/v1";
 
-// Default Http -------------------------
-export const httpDefault = axios.create({
+axios.create({
   baseURL: BASE_URL,
 });
 
