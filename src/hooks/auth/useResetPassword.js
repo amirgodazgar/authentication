@@ -5,24 +5,19 @@ import useAuth from "./useAuth";
 
 const useResetPassword = () => {
   const [information, setInformation] = useState({});
-
   const { setAuth } = useAuth();
-  const { otpCode, userName, newPassword, newPasswordConfirmation } =
-    information;
 
-  // otpCode : the code that sent to user's phone by SMS after forgot-password
+  const { password, confirmPassword } = information;
 
   useEffect(() => {
     httpDefault
       .post("/Account/ResetPassword", {
-        code: otpCode,
-        userName,
-        newPassword,
-        newPasswordConfirmation,
+        password,
+        confirmPassword,
       })
       .then((res) => {
         if (res.status === 200) {
-          // Redirect user to the sign-in page
+          // Redirect user to sign-in page
 
           setAuth((prev) => ({
             ...prev,
@@ -34,6 +29,7 @@ const useResetPassword = () => {
             error: null,
           }));
           clearCookies();
+
           console.log("ResetPassword", res);
         }
       })

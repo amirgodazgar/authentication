@@ -3,19 +3,21 @@ import { clearCookies } from "../../helper/auth";
 import { httpDefault } from "../../services/http";
 import useAuth from "./useAuth";
 
-const useForgotPassword = () => {
+const useVerification = () => {
   const [information, setInformation] = useState({});
   const { setAuth } = useAuth();
-  const { userName } = information;
+  const { verifyCode } = information;
+
+  // verifyCode : the code sent to user by sms or email
 
   useEffect(() => {
     httpDefault
-      .post("/Account/ForgetPassword", {
-        userName,
+      .post("/Account/VerificationCode", {
+        code: verifyCode,
       })
       .then((res) => {
         if (res.status === 200) {
-          // sending verification code to user and redirect him/her to verification-code page
+          //if the code was valid => Redirect to reset-password page
 
           setAuth((prev) => ({
             ...prev,
@@ -27,17 +29,16 @@ const useForgotPassword = () => {
             error: null,
           }));
           clearCookies();
-
-          console.log("ForgetPassword", res);
+          console.log("VerificationCode", res);
         }
       })
       .catch((err) => {
         // show error message
-        console.log("ForgetPassword", err);
+        console.log("VerificationCode", err);
       });
   }, [information]);
 
   return { setInformation };
 };
 
-export default useForgotPassword;
+export default useVerification;

@@ -26,12 +26,23 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [shouldRemember, setShouldRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   const { setInformation } = useSignIn();
   const { auth } = useAuth();
 
+  const checkEmpty = (...arg) => {
+    arg.map((i) => {
+      if (i === "") setIsEmpty(true);
+      else setIsEmpty(false);
+    });
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    setInformation({ userName, password }, shouldRemember);
+    checkEmpty(userName, password);
+
+    if (!isEmpty) setInformation({ userName, password }, shouldRemember);
+    else return;
   };
   console.log(auth);
 
@@ -57,6 +68,7 @@ const SignIn = () => {
         <FormGroup className="form">
           <FormControl>
             <TextField
+              error={isEmpty}
               id="username"
               label="Email address"
               variant="outlined"
@@ -69,6 +81,7 @@ const SignIn = () => {
           <FormControl>
             <InputLabel htmlFor="password">Password</InputLabel>
             <OutlinedInput
+              error={isEmpty}
               id="password"
               label="Password"
               variant="outlined"

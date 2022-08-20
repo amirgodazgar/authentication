@@ -1,10 +1,6 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
-  Checkbox,
-  FormControlLabel,
   FormGroup,
-  Link,
-  TextField,
   Box,
   OutlinedInput,
   InputAdornment,
@@ -16,13 +12,30 @@ import {
   Fade,
 } from "@mui/material";
 import React, { useState } from "react";
+import useResetPassword from "../../hooks/auth/useResetPassword";
 import { Wrapper } from "./reset-password.styles";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
-  const [resetPassword, setResetPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showResetPassword, setShowResetPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const { setInformation } = useResetPassword();
+
+  const checkEmpty = (...arg) => {
+    arg.map((i) => {
+      if (i === "") setIsEmpty(true);
+      else setIsEmpty(false);
+    });
+  };
+
+  const submitHandler = () => {
+    checkEmpty(password, confirmPassword);
+
+    if (!isEmpty) setInformation({ password, confirmPassword });
+    else return;
+  };
 
   return (
     <Fade in={true} timeout={2000}>
@@ -44,6 +57,7 @@ const ResetPassword = () => {
           <FormControl>
             <InputLabel htmlFor="password">Password</InputLabel>
             <OutlinedInput
+              error={isEmpty}
               id="password"
               label="Password"
               variant="outlined"
@@ -67,20 +81,21 @@ const ResetPassword = () => {
           <FormControl>
             <InputLabel htmlFor="password">Confirm password</InputLabel>
             <OutlinedInput
+              error={isEmpty}
               id="password"
               label="Confirm password"
               variant="outlined"
               fullWidth
-              value={resetPassword}
-              onChange={(e) => setResetPassword(e.target.value)}
-              type={showResetPassword ? "text" : "password"}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              type={showConfirmPassword ? "text" : "password"}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
-                    onClick={() => setShowResetPassword((prev) => !prev)}
+                    onClick={() => setShowConfirmPassword((prev) => !prev)}
                     edge="end"
                   >
-                    {showResetPassword ? <VisibilityOff /> : <Visibility />}
+                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
                 </InputAdornment>
               }
@@ -88,11 +103,11 @@ const ResetPassword = () => {
           </FormControl>
 
           <Button
-            // onClick={(e) => submitHandler(e)}
+            onClick={(e) => submitHandler(e)}
             variant="contained"
             className="btn"
           >
-            Save
+            Confirm
           </Button>
         </FormGroup>
       </Wrapper>

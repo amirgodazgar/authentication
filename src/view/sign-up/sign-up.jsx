@@ -25,13 +25,29 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
 
   const { setInformation } = useSignUp();
 
+  const validation = (pass, confirmPass) => {
+    return pass === confirmPass ? setIsInvalid(false) : setIsInvalid(true);
+  };
+
+  const checkEmpty = (...arg) => {
+    arg.map((i) => {
+      if (i === "") setIsEmpty(true);
+      else setIsEmpty(false);
+    });
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
-    setInformation({ userName, password });
-    console.log(userName, password, confirmPassword);
+    validation(password, confirmPassword);
+    checkEmpty(userName, password, confirmPassword);
+
+    if (!isInvalid && !isEmpty) setInformation({ userName, password });
+    else return;
   };
 
   return (
@@ -56,6 +72,7 @@ const SignUp = () => {
         <FormGroup className="form">
           <FormControl>
             <TextField
+              error={isEmpty}
               id="username"
               label="Email address"
               variant="outlined"
@@ -68,6 +85,7 @@ const SignUp = () => {
           <FormControl>
             <InputLabel htmlFor="password">Password</InputLabel>
             <OutlinedInput
+              error={isEmpty || isInvalid}
               id="password"
               label="Password"
               variant="outlined"
@@ -91,6 +109,7 @@ const SignUp = () => {
           <FormControl>
             <InputLabel htmlFor="password">Confirm password</InputLabel>
             <OutlinedInput
+              error={isEmpty || isInvalid}
               id="password"
               label="Confirm password"
               variant="outlined"

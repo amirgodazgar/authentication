@@ -10,11 +10,28 @@ import {
 } from "@mui/material";
 
 import { Wrapper } from "./verification-code.styles";
+import useVerification from "../../hooks/auth/useVerification";
 
 const VerificationCode = () => {
   const [isTimeOn, setIsTimeOn] = useState(true);
   const [timer, setTimer] = useState(1);
   const [verifyCode, setVerifyCode] = useState("");
+  const [isEmpty, setIsEmpty] = useState(false);
+  const { setInformation } = useVerification();
+
+  const checkEmpty = (...arg) => {
+    arg.map((i) => {
+      if (i === "") setIsEmpty(true);
+      else setIsEmpty(false);
+    });
+  };
+
+  const submitHandler = () => {
+    checkEmpty(verifyCode);
+
+    if (!isEmpty) setInformation({ verifyCode });
+    else return;
+  };
 
   useEffect(() => {
     let interval = null;
@@ -54,6 +71,7 @@ const VerificationCode = () => {
         <FormGroup className="form">
           <FormControl>
             <TextField
+              error={isEmpty}
               label="Verification Code"
               variant="outlined"
               fullWidth
@@ -63,7 +81,7 @@ const VerificationCode = () => {
           </FormControl>
 
           <Button
-            // onClick={(e) => submitHandler(e)}
+            onClick={(e) => submitHandler(e)}
             variant="contained"
             className="btn"
           >
